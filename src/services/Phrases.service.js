@@ -1,3 +1,4 @@
+const sequelize = require("../libs/sequelize")
 const { models } = require("../libs/sequelize")
 
 class PhrasesService{
@@ -14,6 +15,30 @@ class PhrasesService{
     }
 
     return phrase
+  }
+
+  async getRandomPhrase(){
+    const phrase = await models.Phrase.findAll()
+      .then(rta => rta.length)
+    return phrase
+  }
+
+  async createPhrase(data){
+    const newPhrase = await models.Phrase.create(data)
+    return newPhrase
+  }
+
+  async updatePhrase(id, data){
+    const phrase = await this.getPhrase(id)
+    const updatedPhrase = await phrase.update(data)
+    return updatedPhrase
+  }
+
+  async deletePhrase(id){
+    const phrase = await this.getPhrase(id)
+    await phrase.destroy()
+
+    return { id }
   }
 
 }

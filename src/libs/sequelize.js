@@ -12,6 +12,5 @@ const sequelize = new Sequelize(URI, {
 })
 
 setupModels(sequelize)
-sequelize.sync({alter: true})
 
 module.exports = sequelize

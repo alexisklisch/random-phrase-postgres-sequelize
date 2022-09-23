@@ -16,6 +16,7 @@ const PhraseSchema = {
   },
   author: {
     allowNull: true,
+    defaultValue: 'Anónimo',
     type: DataTypes.STRING
   },
 }
