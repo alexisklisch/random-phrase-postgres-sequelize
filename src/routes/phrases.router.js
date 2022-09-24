@@ -8,7 +8,12 @@ const router = express.Router()
 // Get all phrases
 router.get('/', async (req, res) => {
   const phrases = await phrasesService.getAllPhrases()
-  console.log(phrases)
+  res.json(phrases)
+})
+
+// Get random phrase
+router.get('/random', async (req, res) => {
+  const phrases = await phrasesService.getRandomPhrase()
   res.json(phrases)
 })
 
@@ -17,12 +22,6 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params
   const phrase = await phrasesService.getPhrase(id)
   res.json(phrase)
-})
-
-// Get random phrase
-router.get('/random', async (req, res) => {
-  const phrase = await phrasesService.getRandomPhrase()
-  res.json({phrase})
 })
 
 // Post phrase

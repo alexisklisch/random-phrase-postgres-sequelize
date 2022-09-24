@@ -8,21 +8,21 @@ class PhrasesService{
     return rta
   }
 
+  async getRandomPhrase(){
+    const rta = await await models.Phrase.findOne({
+      order: sequelize.random()
+    })
+    return rta
+  }
+
   async getPhrase(id){
     const phrase = await models.Phrase.findByPk(id)
     if(!phrase){
       return {error: 'Ésta frase no existe'}
     }
-
     return phrase
   }
-
-  async getRandomPhrase(){
-    const phrase = await models.Phrase.findAll()
-      .then(rta => rta.length)
-    return phrase
-  }
-
+  
   async createPhrase(data){
     const newPhrase = await models.Phrase.create(data)
     return newPhrase
