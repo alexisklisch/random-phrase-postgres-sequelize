@@ -4,7 +4,9 @@ const { models } = require("../libs/sequelize")
 class AuthorsService{
 
   async getAllAuthors(){
-    const rta = await models.Author.findAll()
+    const rta = await models.Author.findAll({
+      include: ['phrase']
+    })
     return rta
   }
 
