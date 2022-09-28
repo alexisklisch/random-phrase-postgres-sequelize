@@ -1,33 +1,33 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
 
-const PHRASE_TABLE = 'phrases'
+const AUTHOR_TABLE = 'authors'
 
-const PhraseSchema = {
+const AuthorSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  phrase: {
-    allowNull: false,
-    unique: true,
-    type: DataTypes.STRING,
+  name: {
+    allowNull: true,
+    defaultValue: 'Anónimo',
+    type: DataTypes.STRING
   }
 }
 
-class Phrase extends Model{
+class Author extends Model{
   static associate(){
   }
 
   static config(sequelize){
     return {
       sequelize,
-      tableName: PHRASE_TABLE,
-      modelName: 'Phrase',
+      tableName: AUTHOR_TABLE,
+      modelName: 'Author',
       timestamps: false
     }
   }
 }
 
-module.exports = { PHRASE_TABLE, PhraseSchema, Phrase }
+module.exports = { AUTHOR_TABLE, AuthorSchema, Author }
