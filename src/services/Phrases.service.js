@@ -4,12 +4,14 @@ const { models } = require("../libs/sequelize")
 class PhrasesService{
 
   async getAllPhrases(){
-    const rta = await models.Phrase.findAll()
+    const rta = await models.Phrase.findAll({
+      include: ['author']
+    })
     return rta
   }
 
   async getRandomPhrase(){
-    const rta = await await models.Phrase.findOne({
+    const rta = await models.Phrase.findOne({
       order: sequelize.random()
     })
     return rta

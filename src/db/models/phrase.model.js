@@ -17,7 +17,11 @@ const PhraseSchema = {
 }
 
 class Phrase extends Model{
-  static associate(){
+  static associate(models){
+    this.hasOne(models.Author, {
+      as: 'author',
+      foreignKey: 'phraseId'
+    })
   }
 
   static config(sequelize){

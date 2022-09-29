@@ -11,7 +11,7 @@ class AuthorsService{
   }
 
   async getRandomAuthor(){
-    const rta = await await models.Author.findOne({
+    const rta = await models.Author.findOne({
       order: sequelize.random()
     })
     return rta
@@ -26,7 +26,9 @@ class AuthorsService{
   }
   
   async createAuthor(data){
-    const newAuthor = await models.Author.create(data)
+    const newAuthor = await models.Author.create(data, {
+      include: ['phrase']
+    })
     return newAuthor
   }
 

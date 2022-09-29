@@ -15,10 +15,11 @@ const AuthorSchema = {
     defaultValue: 'Anónimo',
     type: DataTypes.STRING
   },
-  // Added the phrase id columns
-  phraseID: {
+  /* Added the phrase id columns
+  The name want this format: textId*/
+  phraseId: {
     field: 'phrase_id',
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.INTEGER,
     unique: true,
     // The reference that joins the tables
@@ -32,11 +33,8 @@ const AuthorSchema = {
 }
 
 class Author extends Model{
-  // I use associate function to create relations
   static associate(models){
-    // Every author HAS ONE phrase
-    // Can contain an alias (as:xxx)
-    this.hasOne(models.Phrase, {as: 'phrase', foreignKey:'phraseId'})
+    this.belongsTo(models.Phrase, {as: 'phrase'})
   }
 
   static config(sequelize){
